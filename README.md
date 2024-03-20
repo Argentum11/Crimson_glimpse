@@ -144,6 +144,8 @@ Container(
 
 ### Stack
 
+![Stack](https://github.com/Argentum11/crimson_glimpse/assets/92793837/fc881430-6b9a-4f7e-ab65-4dbf456b1b18)
+
 In ```CrimsonImage``` statelessWidget
 
 ```dart
