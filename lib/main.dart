@@ -81,29 +81,35 @@ class CrimsonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned(
-          left: 0.5,
-          child: Image(
-            image: AssetImage("assets/crimson_right.png"),
-            height: 150,
+    return SizedBox(
+      width: 350,
+      height: 170,
+      child: Stack(
+        children: [
+          Positioned(
+            left: 120,
+            child: Image(
+              image: AssetImage("assets/crimson_center.png"),
+              height: 150,
+            ),
           ),
-        ),
-        Positioned(
-          left: 30,
-          child: Image(
-            image: AssetImage("assets/crimson_center.png"),
-            height: 150,
+          Positioned(
+            left: 170,
+            child: Image(
+              image: AssetImage("assets/crimson_right.png"),
+              height: 150,
+            ),
           ),
-        ),
-        Positioned(
-          child: Image(
-            image: AssetImage("assets/crimson_left.png"),
-            height: 150,
+          Positioned(
+            left: 100,
+            top:10,
+            child: Image(
+              image: AssetImage("assets/crimson_left.png"),
+              height: 150,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -165,11 +171,23 @@ class CrimsonServants extends StatelessWidget {
     return Column(
       children: [
         TitleBar(title: "緋紅的僕人"),
-        ...servants.map((servant) => Servant(
-            imageLeft: servant["imageLeft"],
+        ...servants.asMap().entries.map((entry) {
+        final index = entry.key;
+        final servant = entry.value;
+        if (index.isEven) {
+          return Servant.imageLeft(
             imageName: servant["imageName"],
             name: servant["name"],
-            description: servant["description"]))
+            description: servant["description"],
+          );
+        } else {
+          return Servant.imageRight(
+            imageName: servant["imageName"],
+            name: servant["name"],
+            description: servant["description"],
+          );
+        }
+      }),
       ],
     );
   }
@@ -178,12 +196,16 @@ class CrimsonServants extends StatelessWidget {
 class Servant extends StatelessWidget {
   final bool imageLeft;
   final String imageName, name, description;
-  const Servant(
+  const Servant.imageLeft(
       {super.key,
-      required this.imageLeft,
       required this.imageName,
       required this.name,
-      required this.description});
+      required this.description}):imageLeft= true;
+  const Servant.imageRight(
+      {super.key,
+      required this.imageName,
+      required this.name,
+      required this.description}):imageLeft= false;
 
   @override
   Widget build(BuildContext context) {
