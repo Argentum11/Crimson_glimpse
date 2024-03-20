@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class CrimsonServants extends StatelessWidget {
   const CrimsonServants({super.key});
-  static const List<Map<String, dynamic>> servants = [
+  final List<Map<String, dynamic>> servants = const [
     {
       'imageLeft': true,
       'imageName': 'slime',
@@ -35,22 +35,22 @@ class CrimsonServants extends StatelessWidget {
       children: [
         TitleBar(title: "緋紅的僕人"),
         ...servants.asMap().entries.map((entry) {
-        final index = entry.key;
-        final servant = entry.value;
-        if (index.isEven) {
-          return Servant.imageLeft(
-            imageName: servant["imageName"],
-            name: servant["name"],
-            description: servant["description"],
-          );
-        } else {
-          return Servant.imageRight(
-            imageName: servant["imageName"],
-            name: servant["name"],
-            description: servant["description"],
-          );
-        }
-      }),
+          final index = entry.key;
+          final servant = entry.value;
+          if (index.isEven) {
+            return Servant.imageLeft(
+              imageName: servant["imageName"],
+              name: servant["name"],
+              description: servant["description"],
+            );
+          } else {
+            return Servant.imageRight(
+              imageName: servant["imageName"],
+              name: servant["name"],
+              description: servant["description"],
+            );
+          }
+        }),
       ],
     );
   }
@@ -63,12 +63,14 @@ class Servant extends StatelessWidget {
       {super.key,
       required this.imageName,
       required this.name,
-      required this.description}):imageLeft= true;
+      required this.description})
+      : imageLeft = true;
   const Servant.imageRight(
       {super.key,
       required this.imageName,
       required this.name,
-      required this.description}):imageLeft= false;
+      required this.description})
+      : imageLeft = false;
 
   @override
   Widget build(BuildContext context) {

@@ -37,7 +37,7 @@ class DragonCard extends StatelessWidget {
 }
 
 class DragonList extends StatelessWidget {
-  static const List<Map<String, String>> dragons = [
+  final List<Map<String, String>> dragons = const [
     {"name": "天翼龍", "image": "wing_dragon"},
     {"name": "雷爪龍", "image": "thunder_dragon"},
     {"name": "風獄龍", "image": "wind_dragon"},
@@ -67,4 +67,3 @@ class DragonList extends StatelessWidget {
     );
   }
 }
-

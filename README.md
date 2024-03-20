@@ -8,7 +8,7 @@ This is a single page app that roughly introduces Crimson from the anime Ragna C
 
 ![Text](https://github.com/Argentum11/crimson_glimpse/assets/92793837/4166996d-3585-4a88-8306-421893575b43)
 
-In ```CrimsonIntroduction``` StatelessWidget
+In ```CrimsonIntroduction``` statelessWidget
 
 ```dart
 Column(
@@ -34,7 +34,7 @@ Column(
 
 ![Image](https://github.com/Argentum11/crimson_glimpse/assets/92793837/2acf39c8-9269-47ec-9600-8721571a9c3b)
 
-In ```DragonCard``` StatelessWidget
+In ```DragonCard``` statelessWidget
 
 ```dart
 Column(
@@ -52,7 +52,7 @@ Column(
 
 ![Icon](https://github.com/Argentum11/crimson_glimpse/assets/92793837/08cf4b14-c4e6-462a-89c4-e872567e90c4)
 
-In ```TitleBar``` StatelessWidget
+In ```TitleBar``` statelessWidget
 
 ```dart
 Row(
@@ -75,7 +75,7 @@ Row(
 
 ![Column](https://github.com/Argentum11/crimson_glimpse/assets/92793837/a772f23c-f3f3-4520-8bbc-5f854a778e9b)
 
-In ```CrimsonServants``` StatelessWidget
+In ```CrimsonServants``` statelessWidget
 
 ```dart
 Column(
@@ -94,7 +94,7 @@ Column(
 
 ![Row](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3e35c5b8-e88e-4318-a88f-9df0f024b7fb)
 
-In ```Servant``` StatelessWidget
+In ```Servant``` statelessWidget
 
 ```dart
 Row(
@@ -113,7 +113,7 @@ Row(
 
 ![Row](https://github.com/Argentum11/crimson_glimpse/assets/92793837/ddc30788-3f45-463a-8e40-c10eec6cb408)
 
-In ```Servant``` StatelessWidget
+In ```Servant``` statelessWidget
 
 ```dart
 Container(
@@ -136,14 +136,43 @@ Container(
 
 ### Stack
 
-TODO
+In ```CrimsonImage``` statelessWidget
+
+```dart
+Stack(
+  children: [
+    Positioned(
+      left: 120,
+      child: Image(
+        image: AssetImage("assets/crimson_center.png"),
+        ...
+      ),
+    ),
+    Positioned(
+      left: 170,
+      child: Image(
+        image: AssetImage("assets/crimson_right.png"),
+        ...
+      ),
+    ),
+    Positioned(
+      left: 100,
+      top: 10,
+      child: Image(
+        image: AssetImage("assets/crimson_left.png"),
+        ...
+      ),
+    ),
+  ],
+),
+```
 
 ### SingleChildScrollView
 
 ![SingleChildScrollView-1](https://github.com/Argentum11/crimson_glimpse/assets/92793837/acdab677-94a8-4be3-bbca-12797985f3af)
 ![SingleChildScrollView-2](https://github.com/Argentum11/crimson_glimpse/assets/92793837/7541474b-c76e-4a7e-8fe0-bda26dd43203)
 
-In ```DragonList``` StatelessWidget
+In ```DragonList``` statelessWidget
 
 ```dart
 SingleChildScrollView(
@@ -169,7 +198,7 @@ SingleChildScrollView(
 ![Image](https://github.com/Argentum11/crimson_glimpse/assets/92793837/2acf39c8-9269-47ec-9600-8721571a9c3b)
 
 ```dart
-class DragonCard extends StatelessWidget {
+class DragonCard extends statelessWidget {
   final String dragonName;
   final String dragonImage;
   // Constructor with named parameter for dragonName
@@ -197,7 +226,7 @@ class DragonCard extends StatelessWidget {
 ![Row](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3e35c5b8-e88e-4318-a88f-9df0f024b7fb)
 
 ```dart
-class Servant extends StatelessWidget {
+class Servant extends statelessWidget {
   final bool imageLeft;
   final String imageName, name, description;
   const Servant(
@@ -235,7 +264,7 @@ class Servant extends StatelessWidget {
 ![Column](https://github.com/Argentum11/crimson_glimpse/assets/92793837/a772f23c-f3f3-4520-8bbc-5f854a778e9b)
 
 ```dart
-class CrimsonServants extends StatelessWidget {
+class CrimsonServants extends statelessWidget {
   const CrimsonServants({super.key});
   static const List<Map<String, dynamic>> servants = [
     {

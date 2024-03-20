@@ -83,9 +83,14 @@ class CrimsonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 350,
+    return Container(
+      width: 392.7,
       height: 170,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/earth.png"),fit: BoxFit.cover,
+        ),
+      ),
       child: Stack(
         children: [
           Positioned(
@@ -104,7 +109,7 @@ class CrimsonImage extends StatelessWidget {
           ),
           Positioned(
             left: 100,
-            top:10,
+            top: 10,
             child: Image(
               image: AssetImage("assets/crimson_left.png"),
               height: 150,
