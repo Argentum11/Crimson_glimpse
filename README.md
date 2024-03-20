@@ -6,7 +6,7 @@ This is a single page app that roughly introduces Crimson from the anime Ragna C
 
 ### Text
 
-![Text](https://github.com/Argentum11/crimson_glimpse/assets/92793837/4166996d-3585-4a88-8306-421893575b43)
+![Text](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3f3f2757-c89e-45aa-915d-a6495e3123e2)
 
 In ```CrimsonIntroduction``` statelessWidget
 
@@ -142,7 +142,7 @@ Container(
 );
 ```
 
-### Stack
+### Stack & Positioned
 
 ![Stack](https://github.com/Argentum11/crimson_glimpse/assets/92793837/fc881430-6b9a-4f7e-ab65-4dbf456b1b18)
 
@@ -203,6 +203,8 @@ SingleChildScrollView(
 
 ### Container
 
+![Stack](https://github.com/Argentum11/crimson_glimpse/assets/92793837/fc881430-6b9a-4f7e-ab65-4dbf456b1b18)
+
 In ```CrimsonImage``` statelessWidget
 
 ```dart
@@ -232,6 +234,8 @@ Container(
 
 ### SizedBox
 
+![SizedBox](https://github.com/Argentum11/crimson_glimpse/assets/92793837/88cc4fef-6d3e-43e3-aaf7-56dbb56a932f)
+
 In ```TitleBar``` statelessWidget
 
 ```dart
@@ -257,6 +261,8 @@ Row(
 
 ### Expanded
 
+![Text](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3f3f2757-c89e-45aa-915d-a6495e3123e2)
+
 In ```CrimsonIntroduction``` statelessWidget
 
 ```dart
@@ -270,40 +276,9 @@ Row(
 ),
 ```
 
-### Positioned
-
-In ```CrimsonImage``` statelessWidget
-
-```dart
-Stack(
-  children: [
-    Positioned(
-      left: 120,
-      child: Image(
-        image: AssetImage("assets/crimson_center.png"),
-        height: 150,
-      ),
-    ),
-    Positioned(
-      left: 170,
-      child: Image(
-        image: AssetImage("assets/crimson_right.png"),
-        height: 150,
-      ),
-    ),
-    Positioned(
-      left: 100,
-      top: 10,
-      child: Image(
-        image: AssetImage("assets/crimson_left.png"),
-        height: 150,
-      ),
-    ),
-  ],
-),
-```
-
 ### SafeArea
+
+![SafeArea](https://github.com/Argentum11/crimson_glimpse/assets/92793837/a154c57e-50b4-49eb-8aaa-f5b8f454fd41)
 
 In ```CrimsonGlimpse``` statelessWidget
 
@@ -324,6 +299,8 @@ SafeArea(
 
 ### Divider
 
+![Divider](https://github.com/Argentum11/crimson_glimpse/assets/92793837/03590212-6334-46b5-bfb4-4ac05e3d0b48)
+
 In ```CrimsonGlimpse``` statelessWidget
 
 ```dart
@@ -342,6 +319,8 @@ SafeArea(
 
 ### Transform
 
+![Transform](https://github.com/Argentum11/crimson_glimpse/assets/92793837/ac77b8f0-9ed8-4787-938c-b4c36df33fa3)
+
 In ```CrimsonIntroduction``` statelessWidget
 
 ```dart
@@ -356,6 +335,8 @@ Transform(
 ```
 
 ### ClipRRect
+
+![Text](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3f3f2757-c89e-45aa-915d-a6495e3123e2)
 
 In ```CrimsonIntroduction``` statelessWidget
 
@@ -411,15 +392,21 @@ class DragonCard extends statelessWidget {
 ![Row](https://github.com/Argentum11/crimson_glimpse/assets/92793837/3e35c5b8-e88e-4318-a88f-9df0f024b7fb)
 
 ```dart
-class Servant extends statelessWidget {
+class Servant extends StatelessWidget {
   final bool imageLeft;
   final String imageName, name, description;
-  const Servant(
+  const Servant.imageLeft(
       {super.key,
-      required this.imageLeft,
       required this.imageName,
       required this.name,
-      required this.description});
+      required this.description})
+      : imageLeft = true;
+  const Servant.imageRight(
+      {super.key,
+      required this.imageName,
+      required this.name,
+      required this.description})
+      : imageLeft = false;
 
   @override
   Widget build(BuildContext context) {
@@ -449,9 +436,9 @@ class Servant extends statelessWidget {
 ![Column](https://github.com/Argentum11/crimson_glimpse/assets/92793837/a772f23c-f3f3-4520-8bbc-5f854a778e9b)
 
 ```dart
-class CrimsonServants extends statelessWidget {
+class CrimsonServants extends StatelessWidget {
   const CrimsonServants({super.key});
-  static const List<Map<String, dynamic>> servants = [
+  final List<Map<String, dynamic>> servants = const [
     {
       'imageLeft': true,
       'imageName': 'slime',
@@ -480,11 +467,23 @@ class CrimsonServants extends statelessWidget {
     return Column(
       children: [
         TitleBar(title: "緋紅的僕人"),
-        ...servants.map((servant) => Servant(
-            imageLeft: servant["imageLeft"],
-            imageName: servant["imageName"],
-            name: servant["name"],
-            description: servant["description"]))
+        ...servants.asMap().entries.map((entry) {
+          final index = entry.key;
+          final servant = entry.value;
+          if (index.isEven) {
+            return Servant.imageLeft(
+              imageName: servant["imageName"],
+              name: servant["name"],
+              description: servant["description"],
+            );
+          } else {
+            return Servant.imageRight(
+              imageName: servant["imageName"],
+              name: servant["name"],
+              description: servant["description"],
+            );
+          }
+        }),
       ],
     );
   }
